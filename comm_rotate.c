@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:07:27 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 23:48:55 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:53:43 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 ** The rotate function itself
 */
-
 void	rotate(t_stack **stack)
 {
 	t_stack	*temp;
@@ -36,7 +35,6 @@ void	rotate(t_stack **stack)
 ** Shift up all elements
 **   of stack a by 1
 */
-
 void	ra(t_stack **stack)
 {
 	rotate(stack);
@@ -47,7 +45,6 @@ void	ra(t_stack **stack)
 ** Shift up all elements
 **   of stack b by 1
 */
-
 void	rb(t_stack **stack)
 {
 	rotate(stack);
@@ -57,7 +54,6 @@ void	rb(t_stack **stack)
 /*
 ** 'ra' and 'rb' at the same time
 */
-
 void	rr(t_stack **a, t_stack **b)
 {
 	rotate(a);

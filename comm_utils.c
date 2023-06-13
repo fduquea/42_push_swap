@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:34:37 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 23:29:05 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:46:44 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_stack	*return_cheapest(t_stack *stack)
 		return (NULL);
 	while (stack)
 	{
-		if (stack->cheapest)
+		if (stack->cheapest == true)
 			return (stack);
-		stack = stack->next;
+		stack = stack->next; 
 	}
 	return (NULL);
 }

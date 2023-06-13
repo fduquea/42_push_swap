@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:23:41 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 22:25:59 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:15:02 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ void	create_stack(t_stack **a, char **args, int argc)
 		add_single_number(a, (int)n);
 		i++;
 	}
-	if (argc == 2)
+	if (argc == 2 && args[1])
 		free_fake_argv(args);
 }

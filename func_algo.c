@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:18:59 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 01:06:50 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:34:03 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,9 @@ void	move_one(t_stack **a, t_stack **b)
 	t_stack	*cheapest;
 
 	cheapest = return_cheapest(*b);
-	if (cheapest->half == 1
-		&& cheapest->target->half == 1)
+	if (cheapest->half == 1 && cheapest->target->half == 1)
 		rotate_both(a, b, cheapest);
-	else if ((cheapest->half == 0)
-		&& (cheapest->target->half == 0))
+	else if ((cheapest->half == 0) && (cheapest->target->half == 0))
 		reverse_rotate_both(a, b, cheapest);
 	finish_rotation(b, cheapest, 'b');
 	finish_rotation(a, cheapest->target, 'a');

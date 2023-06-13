@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:28:08 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 23:53:40 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:14:38 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	error_syntax(char *str)
 	i = 1;
 	if (str[0] != '+' && str[0] != '-' && !(str[0] >= '0' && str[0] <= '9'))
 		return (1);
+	if ((str[0] == '-' && !(str[1] >= '0' && str[1] <= '9')) || (str[0] == '+' && !(str[1] >= '0' && str[1] <= '9')))
+		return (1);
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
@@ -76,9 +78,9 @@ int	error_syntax(char *str)
 
 void	stack_error(t_stack **a, char **args, int argc)
 {
-	if (argc == 2)
+	if (argc == 2 && args[1])
 		free_fake_argv(args);
 	stack_free(a);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
 }

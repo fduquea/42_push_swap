@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:09:28 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 23:49:08 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:51:48 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 ** The push function itself
 */
-
 void	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*node;
@@ -44,7 +43,6 @@ void	push(t_stack **dest, t_stack **src)
 ** Take the first element at the top
 ** of b and put it at the top of a
 */
-
 void	pa(t_stack **a, t_stack **b)
 {
 	push(a, b);
@@ -55,7 +53,6 @@ void	pa(t_stack **a, t_stack **b)
 ** Take the first element at the top
 ** of a and put it at the top of b
 */
-
 void	pb(t_stack **b, t_stack **a)
 {
 	push(b, a);

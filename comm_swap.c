@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:07:17 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 23:49:37 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:00:52 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,26 @@
 /*
 ** The swap function itself
 */
-
 void	swap(t_stack **stack)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
-		return;
+	int	len;
 
-	t_stack *first = *stack;
-	t_stack *second = (*stack)->next;
-
-	first->next = second->next;
-	first->prev = second;
-	if (second->next)
-		second->next->prev = first;
-	second->prev = NULL;
-	second->next = first;
-
-	*stack = second;
+	len = stack_len(*stack);
+	if (NULL == *stack || NULL == stack || 1 == len)
+		return ;
+	*stack = (*stack)->next;
+	(*stack)->prev->prev = *stack;
+	(*stack)->prev->next = (*stack)->next;
+	if ((*stack)->next)
+		(*stack)->next->prev = (*stack)->prev;
+	(*stack)->next = (*stack)->prev;
+	(*stack)->prev = NULL;
 }
 
 /*
 ** Swap the first 2 elements
 ** at the top of stack a
 */
-
 void	sa(t_stack **stack)
 {
 	swap(stack);
@@ -49,7 +45,6 @@ void	sa(t_stack **stack)
 ** Swap the first 2 elements
 ** at the top of stack b
 */
-
 void	sb(t_stack **stack)
 {
 	swap(stack);
@@ -59,7 +54,6 @@ void	sb(t_stack **stack)
 /*
 ** 'sa' and 'sb'  at the same time
 */
-
 void	ss(t_stack **a, t_stack **b)
 {
 	swap(a);

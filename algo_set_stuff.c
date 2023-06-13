@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 23:00:43 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 23:26:43 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:30:08 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	set_cheapest(t_stack *b)
 	best_match_data = INT_MAX;
 	while (b)
 	{
+		b->cheapest = false;
 		if (b->price < best_match_data)
 		{
 			best_match_data = b->price;

@@ -6,84 +6,109 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 14:55:40 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/12 22:13:59 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:57:57 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	i;
-
-	if (!dest && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((char *) dest)[i] = ((char *) src)[i];
-		i++;
-	}
-	return (dest);
-}
-
+/*
+ * Args at the command line are
+ * spaced separated sings
+*/
 static int	ft_count_words(char const *s, char c)
 {
-	int	count;
-	int	i;
+	int		count;
+	int		flag;
 
 	count = 0;
-	i = 0;
-	while (s[i] != '\0')
+	while (*s)
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0')
-			count++;
-		while (s[i] != '\0' && s[i] != c)
-			i++;
+		flag = 0;
+		while (*s == c)
+			++s;
+		while (*s != c && *s)
+		{
+			if (flag == 0)
+			{
+				count++;
+				flag = 1;
+			}
+			++s;
+		}
 	}
 	return (count);
 }
 
-static char	*ft_words(char const *s, int len, int *j)
+/*
+ * I exploit static variables
+ * which are basically 
+ * "Global private variables"
+ * i can access it only via the get_next_word function
+*/
+static char	*ft_get_next_word(char *s, char c)
 {
-	char	*dest;
+	static int	cursor;
+	char		*next_s;
+	int			len;
+	int			i;
 
-	dest = malloc((len + 1) * sizeof(char));
-	if (!dest)
+	len = 0;
+	i = 0;
+	while (s[cursor] == c)
+		++cursor;
+	while ((s[cursor + len] != c) && s[cursor + len])
+		++len;
+	next_s = malloc((size_t)len * sizeof(char) + 1);
+	if (NULL == next_s)
 		return (NULL);
-	dest[len] = '\0';
-	j += len;
-	return ((char *) ft_memcpy(dest, s, len));
+	while ((s[cursor] != c) && s[cursor])
+		next_s[i++] = s[cursor++];
+	next_s[i] = '\0';
+	return (next_s);
 }
 
-char	**ft_split(char *str, char c)
+/*
+ * I recreate an argv in the HEAP
+ *
+ * +2 because i want to allocate space
+ * for the "\0" Placeholder and the final NULL
+ *
+ * words-->[p0]-> "\0" Placeholder to mimic argv
+ * 				 |->[p1]->"Hello"
+ * 				 |->[p2]->"how"
+ * 				 |->[p3]->"Are"
+ * 				 |->[..]->"..""
+ * 				 |->[NULL]
+*/
+char	**ft_split(char *s, char c)
 {
+	int		words_number;
+	char	**words;
 	int		i;
-	int		j;
-	char	**strings;
-	int		len;
 
-	strings = malloc((ft_count_words(str, c) + 2) * sizeof(char *));
-	if (!str || !(strings))
-		return (NULL);
-	j = 0;
-	strings[0] = ft_words("\0", 0, &j);
-	i = 1;
-	while (str[j])
+	i = 0;
+	words_number = ft_count_words(s, c);
+	if (!words_number)
 	{
-		if (str[j] == c)
-			j++;
-		else
-		{
-			len = 0;
-			while (str[j + len] && str[j + len] != c)
-				len++;
-			strings[i++] = ft_words(str + j, len, &j);
-			j += len;
-		}
+		write(2, "Error\n", 6);
+		exit(1);
 	}
-	strings[i] = NULL;
-	return (strings);
+	words = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (words == NULL)
+		return (NULL);
+	while (words_number-- >= 0)
+	{
+		if (0 == i)
+		{
+			words[i] = malloc(sizeof(char));
+			if (words[i] == NULL)
+				return (NULL);
+			words[i++][0] = '\0';
+			continue ;
+		}
+		words[i++] = ft_get_next_word(s, c);
+	}
+	words[i] = NULL;
+	return (words);
 }
