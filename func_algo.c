@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:18:59 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 12:34:03 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:52:16 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*a != cheapest->target
-		&& *b != cheapest)
+ 		|| *b != cheapest)
 		rr(a, b);
 	set_positions(*a);
 	set_positions(*b);
@@ -29,7 +29,7 @@ void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 void	reverse_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*a != cheapest->target
-		&& *b != cheapest)
+		|| *b != cheapest)
 		rrr(a, b);
 	set_positions(*a);
 	set_positions(*b);
