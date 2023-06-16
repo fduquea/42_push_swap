@@ -6,13 +6,13 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:28:08 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 12:14:38 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:26:22 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_fake_argv(char **args)
+void	freeFakeArgv(char **args)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	free_fake_argv(char **args)
 	free(args - 1);
 }
 
-void	stack_free(t_stack **a)
+void	stackFree(t_stack **a)
 {
 	t_stack	*temp;
 	t_stack	*current;
@@ -45,7 +45,7 @@ void	stack_free(t_stack **a)
 	*a = NULL;
 }
 
-int	check_repetition(t_stack *a, int n)
+int	checkRepetition(t_stack *a, int n)
 {
 	if (a == NULL)
 		return (0);
@@ -58,7 +58,7 @@ int	check_repetition(t_stack *a, int n)
 	return (0);
 }
 
-int	error_syntax(char *str)
+int	errorSyntax(char *str)
 {
 	int	i;
 
@@ -76,11 +76,11 @@ int	error_syntax(char *str)
 	return (0);
 }
 
-void	stack_error(t_stack **a, char **args, int argc)
+void	stackError(t_stack **a, char **args, int argc)
 {
 	if (argc == 2 && args[1])
-		free_fake_argv(args);
-	stack_free(a);
+		freeFakeArgv(args);
+	stackFree(a);
 	write(2, "Error\n", 6);
 	exit(1);
 }

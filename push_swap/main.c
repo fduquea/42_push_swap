@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aa-stack_split.c                                   :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 14:55:40 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 10:57:57 by fduque-a         ###   ########.fr       */
+/*   Created: 2023/05/25 12:18:07 by fduque-a          #+#    #+#             */
+/*   Updated: 2023/06/16 22:16:00 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,3 +112,49 @@ char	**ft_split(char *s, char c)
 	words[i] = NULL;
 	return (words);
 }
+
+int	ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	if (s[i] == c)
+		return (1);
+	return (0);
+}
+
+
+int	main(int argc, char **argv)
+{
+	t_stack	*a;
+	t_stack	*b;
+
+	a = NULL;
+	b = NULL;
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	if (argc == 2 && ft_strchr(argv[1], ' '))
+		argv = ft_split(argv[1], 32);
+	createStack(&a, argv + 1, argc);
+	if (!isSorted(a))
+	{
+		if (stackLen(a) == 2)
+			sa(&a);
+		else if (stackLen(a) == 3)
+			sortThree(&a);
+		else
+			pushSwap(&a, &b);
+	}
+	stackFree(&a);
+	stackFree(&b);
+}
+

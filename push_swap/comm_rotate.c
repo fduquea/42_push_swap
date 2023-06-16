@@ -1,62 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comm_reverse.c                                     :+:      :+:    :+:   */
+/*   comm_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 11:09:09 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 15:53:12 by fduque-a         ###   ########.fr       */
+/*   Created: 2023/05/31 11:07:27 by fduque-a          #+#    #+#             */
+/*   Updated: 2023/06/16 21:34:56 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** The reverse rotate function itself
+** The rotate function itself
 */
-void	reverse(t_stack **stack)
+void	rotate(t_stack **stack)
 {
-	t_stack	*node;
+	t_stack	*temp;
 	int		len;
 
-	len = stack_len(*stack);
+	len = stackLen(*stack);
 	if (*stack == NULL || stack == NULL || len == 1)
 		return ;
-	node = last_node(*stack);
-	node->prev->next = NULL;
-	node->next = *stack;
-	node->prev = NULL;
-	*stack = node;
-	node->next->prev = node;
+	temp = lastNode(*stack);
+	temp->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	temp->next->prev = temp;
+	temp->next->next = NULL;
 }
 
 /*
-** Shift down all elements
+** Shift up all elements
 **   of stack a by 1
 */
-void	rra(t_stack **stack)
+void	ra(t_stack **stack)
 {
-	reverse(stack);
-	write(1, "rra\n", 4);
+	rotate(stack);
+	write(1, "ra\n", 3);
 }
 
 /*
-** Shift down all elements
+** Shift up all elements
 **   of stack b by 1
 */
-void	rrb(t_stack **stack)
+void	rb(t_stack **stack)
 {
-	reverse(stack);
-	write(1, "rrb\n", 4);
+	rotate(stack);
+	write(1, "rb\n", 3);
 }
 
 /*
 ** 'ra' and 'rb' at the same time
 */
-void	rrr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
-	reverse(a);
-	reverse(b);
-	write(1, "rrr\n", 4);
+	rotate(a);
+	rotate(b);
+	write(1, "rr\n", 3);
 }

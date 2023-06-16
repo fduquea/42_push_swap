@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:07:17 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 16:00:52 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/16 22:29:18 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	swap(t_stack **stack)
 {
 	int	len;
 
-	len = stack_len(*stack);
+	len = stackLen(*stack);
 	if (NULL == *stack || NULL == stack || 1 == len)
 		return ;
 	*stack = (*stack)->next;

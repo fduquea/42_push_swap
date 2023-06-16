@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comm_utils.c                                       :+:      :+:    :+:   */
+/*   utils_algo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:34:37 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 15:46:44 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/16 22:19:21 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*return_cheapest(t_stack *stack)
+t_stack	*findLastNode(t_stack *node)
 {
-	if (stack == NULL)
+	if (node == NULL)
 		return (NULL);
-	while (stack)
-	{
-		if (stack->cheapest == true)
-			return (stack);
-		stack = stack->next; 
-	}
-	return (NULL);
+	while (node->next)
+		node = node->next;
+	return (node);
 }
 
-int	stack_len(t_stack *a)
+int	stackLen(t_stack *a)
 {
 	int		i;
 
@@ -38,7 +34,7 @@ int	stack_len(t_stack *a)
 	return (i);
 }
 
-t_stack	*last_node(t_stack *stack)
+t_stack	*lastNode(t_stack *stack)
 {
 	if (stack == NULL)
 		return (NULL);
@@ -47,14 +43,14 @@ t_stack	*last_node(t_stack *stack)
 	return (stack);
 }
 
-t_stack	*smallest(t_stack *stack)
+t_stack	*smallestNode(t_stack *stack)
 {
 	t_stack	*smallest_node;
 	long	smallest;
 	int		len;
 
 	smallest = LONG_MAX;
-	len = stack_len(stack);
+	len = stackLen(stack);
 	if (stack == NULL || len == 1)
 		return (NULL);
 	smallest_node = stack;
@@ -70,14 +66,14 @@ t_stack	*smallest(t_stack *stack)
 	return (smallest_node);
 }
 
-t_stack	*biggest(t_stack *stack)
+t_stack	*biggestNode(t_stack *stack)
 {
 	t_stack	*biggest_node;
 	long	biggest;
 	int		len;
 
 	biggest = LONG_MIN;
-	len = stack_len(stack);
+	len = stackLen(stack);
 	if (stack == NULL || len == 1)
 		return (NULL);
 	biggest_node = stack;

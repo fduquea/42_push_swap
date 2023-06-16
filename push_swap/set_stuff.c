@@ -6,13 +6,13 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 23:00:43 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 14:30:08 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:27:26 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_targets(t_stack *a, t_stack *b)
+void	setTargets(t_stack *a, t_stack *b)
 {
 	t_stack	*target;
 	t_stack	*curr_a;
@@ -32,21 +32,21 @@ void	set_targets(t_stack *a, t_stack *b)
 			curr_a = curr_a->next;
 		}
 		if (best_match == INT_MAX)
-			b->target = smallest(a);
+			b->target = smallestNode(a);
 		else
 			b->target = target;
 		b = b->next;
 	}
 }
 
-void	set_positions(t_stack *stack)
+void	setPositions(t_stack *stack)
 {
 	int	i;
 	int	center;
 	
 	if (stack == NULL)
 		return ;
-	center = stack_len(stack) / 2;
+	center = stackLen(stack) / 2;
 	i = 0;
 	while(stack)
 	{
@@ -60,27 +60,29 @@ void	set_positions(t_stack *stack)
 	}
 }
 
-void	set_prices(t_stack *a, t_stack *b)
+void	setPrices(t_stack *a, t_stack *b)
 {
 	int	len_a;
 	int	len_b;
 
-	len_a = stack_len(a);
-	len_b = stack_len(b);
+	len_a = stackLen(a);
+	len_b = stackLen(b);
 	while (b)
 	{
-		b->price = b->position;
-		if (b->half == 0)
-			b->price = len_b - (b->position);
-		if (b->target->half == 1)
-			b->price += b->target->position;
+		if (b->target->half == 1 && b->half == 1)
+			b->price = maxValue(b->position, b->target->position);
+		else if (b->target->half == 0 && b->half == 0)
+			b->price = maxValue(len_a - (b->target->position), len_b - (b->position));
+		else if (b->target->half == 1 && b->half == 0)
+			b->price = b->target->position + len_b - b->position;
 		else
-			b->price += len_a - (b->target->position);
+			b->price = len_a - b->target->position + b->position;
 		b = b->next;
 	}
 }
 
-void	set_cheapest(t_stack *b)
+
+void	setCheapest(t_stack *b)
 {
 	int		best_match_data;
 	t_stack	*best_match_node;
@@ -101,11 +103,11 @@ void	set_cheapest(t_stack *b)
 	best_match_node->cheapest = true;
 }
 
-void	set_stuff(t_stack *a, t_stack *b)
+void	setStuff(t_stack *a, t_stack *b)
 {
-	set_positions(a);
-	set_positions(b);
-	set_targets(a, b);
-	set_prices(a, b);
-	set_cheapest(b);
+	setPositions(a);
+	setPositions(b);
+	setTargets(a, b);
+	setPrices(a, b);
+	setCheapest(b);
 }
