@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:18:59 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 22:29:48 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/17 00:08:11 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,42 @@
  * 		~cheapest_node tops is a
  * 		~relative target_node tops in b
 */
-void	rotateBoth(t_stack **a, t_stack **b, t_stack *cheapest)
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*a != cheapest->target && *b != cheapest)
-		rr(a, b);
-	setPositions(*a);
-	setPositions(*b);
+		rr(a, b, false);
+	set_positions(*a);
+	set_positions(*b);
 }
 
-void	reverseRotateBoth(t_stack **a, t_stack **b, t_stack *cheapest)
+void	reverse_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*a != cheapest->target && *b != cheapest)
-		rrr(a, b);
-	setPositions(*a);
-	setPositions(*b);
+		rrr(a, b, false);
+	set_positions(*a);
+	set_positions(*b);
 }
 
 /*
  * Conclude the rotation of the stacks 
 */
-void	finishRotation(t_stack **stack, t_stack *top_node, char stack_name)
+void	finish_rotation(t_stack **stack, t_stack *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
 		if (stack_name == 'a')
 		{
 			if (top_node->half == 1)
-				ra(stack);
+				ra(stack, false);
 			else
-				rra(stack);
+				rra(stack, false);
 		}
 		else if (stack_name == 'b')
 		{
 			if (top_node->half == 1)
-				rb(stack);
+				rb(stack, false);
 			else
-				rrb(stack);
+				rrb(stack, false);
 		}	
 	}
 }
@@ -63,18 +63,18 @@ void	finishRotation(t_stack **stack, t_stack *top_node, char stack_name)
  * 1)Make the target nodes emerge
  * 2)push in A
 */
-void	moveOne(t_stack **a, t_stack **b)
+void	move_one(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
 
-	cheapest = returnCheapest(*b);
+	cheapest = return_cheapest(*b);
 	if (cheapest->half == 1 && cheapest->target->half == 1)
-		rotateBoth(a, b, cheapest);
+		rotate_both(a, b, cheapest);
 	else if ((cheapest->half == 0) && (cheapest->target->half == 0))
-		reverseRotateBoth(a, b, cheapest);
-	finishRotation(b, cheapest, 'b');
-	finishRotation(a, cheapest->target, 'a');
-	pa(a, b);
+		reverse_rotate_both(a, b, cheapest);
+	finish_rotation(b, cheapest, 'b');
+	finish_rotation(a, cheapest->target, 'a');
+	pa(a, b, false);
 }
 
 /*
@@ -82,29 +82,28 @@ void	moveOne(t_stack **a, t_stack **b)
  * ~For every configuration choose the "cheapest_node"
  * ~Push everything back in A in order
 */
-void	pushSwap(t_stack **a, t_stack **b)
+void	push_swap(t_stack **a, t_stack **b)
 {
-	t_stack	*smallest_node;
+	t_stack	*smallest;
 	int		len_a;
 
-	len_a = stackLen(*a);
+	len_a = stack_len(*a);
 	if (len_a == 5)
-		sortFive(a, b);
+		sort_five(a, b);
 	else
-		push2B(a, b, len_a);
-	sortThree(a);
+		push_to_b(a, b, len_a);
+	sort_three(a);
 	while (*b)
 	{
-		setStuff(*a, *b);
-		moveOne(a, b);
+		set_stuff(*a, *b);
+		move_one(a, b);
 	}
-	setPositions(*a);
-	smallest_node = smallestNode(*a);
-	if (smallest_node->half == 1)
-		while (*a != smallest_node)
-			ra(a);
+	set_positions(*a);
+	smallest = smallest_node(*a);
+	if (smallest->half == 1)
+		while (*a != smallest)
+			ra(a, false);
 	else
-		while (*a != smallest_node)
-			rra(a);
+		while (*a != smallest)
+			rra(a, false);
 }
-

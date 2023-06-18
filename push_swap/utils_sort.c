@@ -6,68 +6,68 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 14:55:40 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 22:27:46 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:43:15 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push2B(t_stack **a, t_stack **b, int size)
+void	push_to_b(t_stack **a, t_stack **b, int size)
 {
-	int		pushed;
+	int		b_len;
 	int		i;
 
-	pushed = 0;
+	b_len = 0;
 	i = 0;
-	getFinalIndex(*a, size);
-	while (size > 6 && i < size && pushed < size / 2)
+	get_final_index(*a, size);
+	while (size > 6 && i < size && b_len < size / 2)
 	{
 		if ((*a)->final_index <= size / 2)
 		{
-			pb(b, a);
-			pushed++;
+			pb(b, a, false);
+			b_len++;
 		}
 		else
-			ra(a);
+			ra(a, false);
 		i++;
 	}
-	while (size - pushed > 3)
+	while (size - b_len > 3)
 	{
-		pb(b, a);
-		pushed++;
+		pb(b, a, false);
+		b_len++;
 	}
 }
 
-void	getFinalIndex(t_stack *a, int size)
+void	get_final_index(t_stack *a, int size)
 {
 	t_stack	*temp;
-	t_stack	*max_address;
-	int		max_n;
+	t_stack	*curr_index;
+	int		temp_data;
 
 	while (size--)
 	{
 		temp = a;
-		max_n = INT_MIN;
-		max_address = NULL;
+		temp_data = INT_MIN;
+		curr_index = NULL;
 		while (temp)
 		{
 			if (temp->data == INT_MIN && temp->final_index == 0)
 				temp->final_index = 1;
-			else if (temp->data > max_n && temp->final_index == 0)
+			else if (temp->data > temp_data && temp->final_index == 0)
 			{
-				max_n = temp->data;
-				max_address = temp;
+				temp_data = temp->data;
+				curr_index = temp;
 				temp = a;
 			}
 			else
 				temp = temp->next;
 		}
-		if (max_address)
-			max_address->final_index = size + 1;
+		if (curr_index)
+			curr_index->final_index = size + 1;
 	}
 }
 
-int	maxValue(int a, int b)
+int	max_value(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -75,7 +75,7 @@ int	maxValue(int a, int b)
 		return (b);
 }
 
-t_stack	*returnCheapest(t_stack *stack)
+t_stack	*return_cheapest(t_stack *stack)
 {
 	if (stack == NULL)
 		return (NULL);
@@ -83,7 +83,7 @@ t_stack	*returnCheapest(t_stack *stack)
 	{
 		if (stack->cheapest == true)
 			return (stack);
-		stack = stack->next; 
+		stack = stack->next;
 	}
 	return (NULL);
 }

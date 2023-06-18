@@ -6,13 +6,13 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:23:41 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 22:17:23 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/18 01:49:12 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	addNumber(t_stack **stack, int num)
+void	add_number(t_stack **stack, int num)
 {
 	t_stack	*node;
 	t_stack	*last_node;
@@ -32,35 +32,38 @@ void	addNumber(t_stack **stack, int num)
 	}
 	else
 	{
-		last_node = findLastNode(*stack);
+		last_node = findlast_node(*stack);
 		last_node->next = node;
 		node->prev = last_node;
 	}
 }
 
-void	createStack(t_stack **a, char **args, int argc)
+void	create_stack(t_stack **a, char **argv, int argc, bool status)
 {
 	int		i;
 	long	n;
 
 	i = 0;
-	while (args[i])
+	while (argv[i])
 	{
-		if (errorSyntax(args[i]))
-			stackError(a, args, argc);
-		n = ft_atol(args[i]);
+		if (error_syntax(argv[i]))
+			stack_error(a, argv, argc, status);
+		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			stackError(a, args, argc);
-		if (checkRepetition(*a, n))
-			stackError(a, args, argc);
-		addNumber(a, (int)n);
+			stack_error(a, argv, argc, status);
+		if (check_repetion(*a, n))
+			stack_error(a, argv, argc, status);
+		add_number(a, (int)n);
 		i++;
 	}
-	if (argc == 2 && args[1])
-		freeFakeArgv(args);
+	if (argc == 2 && argv[1])
+	{
+		free_fake_argv(argv);
+		argv = NULL;
+	}
 }
 
-int	isSorted(t_stack *a)
+int	is_sorted(t_stack *a)
 {
 	if (a == NULL)
 		return (0);

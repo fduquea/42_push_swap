@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   a_split_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 12:18:07 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/18 01:47:33 by fduque-a         ###   ########.fr       */
+/*   Created: 2023/06/17 00:24:44 by fduque-a          #+#    #+#             */
+/*   Updated: 2023/06/17 00:24:48 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,31 +124,4 @@ int	ft_strchr(char *s, int c)
 	if (s[i] == c)
 		return (1);
 	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_stack	*a;
-	t_stack	*b;
-
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
-	if (argc == 2 && ft_strchr(argv[1], ' '))
-		argv = ft_split(argv[1], 32);
-	if (argv == NULL)
-		return (write(2, "Error\n", 6));
-	create_stack(&a, argv + 1, argc, false);
-	if (!is_sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else
-			push_swap(&a, &b);
-	}
-	stack_free(&a);
-	stack_free(&b);
 }

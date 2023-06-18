@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:29:01 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 22:27:43 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/17 00:06:41 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sortFive(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b)
 {
-	while (stackLen(*a) > 3)
+	while (stack_len(*a) > 3)
 	{
-		setStuff(*a, *b);
-		finishRotation(a, smallestNode(*a), 'a');
-		pb(b, a);
+		set_stuff(*a, *b);
+		finish_rotation(a, smallest_node(*a), 'a');
+		pb(b, a, false);
 	}
 }
 
-void	sortThree(t_stack **a)
+void	sort_three(t_stack **a)
 {
-	t_stack	*biggest_node;
+	t_stack	*biggest;
 
-	biggest_node = biggestNode(*a);
-	if (biggest_node == *a)
-		ra(a);
-	else if (biggest_node == (*a)->next)
-		rra(a);
+	biggest = biggest_node(*a);
+	if (biggest == *a)
+		ra(a, false);
+	else if (biggest == (*a)->next)
+		rra(a, false);
 	if ((*a)->data > (*a)->next->data)
-		sa(a);
+		sa(a, false);
 }

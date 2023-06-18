@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 12:18:04 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 22:28:59 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/18 01:48:48 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,75 +35,75 @@ typedef struct s_stack
 }	t_stack;
 
 // free_error_check
-void			freeFakeArgv(char **args);
-void			stackFree(t_stack **a);
-int				checkRepetition(t_stack *a, int n);
-int				errorSyntax(char *str);
-void			stackError(t_stack **a, char **args, int argc);
+void	free_fake_argv(char **argv);
+void	stack_free(t_stack **a);
+int		check_repetion(t_stack *a, int n);
+int		error_syntax(char *str);
+void	stack_error(t_stack **a, char **args, int argc, bool status);
 
 //setters//
-void			setStuff(t_stack *a, t_stack *b);//
-void			setCheapest(t_stack *b);//
-void			setPrices(t_stack *a, t_stack *b);//
-void			setPositions(t_stack *stack);//
-void			setTargets(t_stack *a, t_stack *b);//
+void	set_stuff(t_stack *a, t_stack *b);//
+void	set_cheapest(t_stack *b);//
+void	set_prices(t_stack *a, t_stack *b);//
+void	set_positions(t_stack *stack);//
+void	set_targets(t_stack *a, t_stack *b);//
 
 // push_swap // 
-void			finishRotation(t_stack **stack, t_stack *top_node, char stack_name);//
-void			reverseRotateBoth(t_stack **a, t_stack **b, t_stack *cheapest);//
-void			rotateBoth(t_stack **a, t_stack **b, t_stack *cheapest);//
-void			moveOne(t_stack **a, t_stack **b);//
-void			pushSwap(t_stack **a, t_stack **b);//
+void	finish_rotation(t_stack **stack, t_stack *top_node, char stack_name);
+void	reverse_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);//
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);//
+void	move_one(t_stack **a, t_stack **b);//
+void	push_swap(t_stack **a, t_stack **b);//
 
 // sort utils //
-t_stack			*returnCheapest(t_stack *stack);
-int				maxValue(int a, int b);
-void			getFinalIndex(t_stack *a, int size);
-void			push2B(t_stack **a, t_stack **b, int size);
-long			ft_atol(const char *str);
+t_stack	*return_cheapest(t_stack *stack);
+int		max_value(int a, int b);
+void	get_final_index(t_stack *a, int size);
+void	push_to_b(t_stack **a, t_stack **b, int size);
+long	ft_atol(const char *str);
 
 // small sort // 
-void			sortFive(t_stack **a, t_stack **b);
-void			sortThree(t_stack **a);
+void	sort_five(t_stack **a, t_stack **b);
+void	sort_three(t_stack **a);
 
 // stack creation //
-void			addNumber(t_stack **stack, int num); //
-void			createStack(t_stack **a, char **args, int argc); //
-int				isSorted(t_stack *a); //
+void	add_number(t_stack **stack, int num); //
+void	create_stack(t_stack **a, char **argv, int argc, bool status); //
+int		is_sorted(t_stack *a); //
 
 // main //
-int				ft_strchr(char *s, int c); //
-char			**ft_split(char *str, char c); //
-int				main(int argc, char **argv); //
+int		ft_strchr(char *s, int c); //
+char	**ft_split(char *str, char c); //
+int		main(int argc, char **argv); //
 
 //utils_algo //
-t_stack			*smallestNode(t_stack *stack); //
-t_stack			*biggestNode(t_stack *stack); //
-int				stackLen(t_stack *a); //
-t_stack			*lastNode(t_stack *stack); //
-t_stack			*findLastNode(t_stack *node); //
+t_stack	*smallest_node(t_stack *stack); //
+t_stack	*biggest_node(t_stack *stack); //
+int		stack_len(t_stack *a); //
+t_stack	*last_node(t_stack *stack); //
+t_stack	*findlast_node(t_stack *node); //
 
 //comm swap //
-void			swap(t_stack **stack);
-void			sa(t_stack **stack);
-void			sb(t_stack **stack);
-void			ss(t_stack **a, t_stack **b);
+void	swap(t_stack **stack);
+void	sa(t_stack **stack, bool status);
+void	sb(t_stack **stack, bool status);
+void	ss(t_stack **a, t_stack **b, bool status);
 
 //comm push //
-void			push(t_stack **dest, t_stack **src);
-void			pa(t_stack **a, t_stack **b);
-void			pb(t_stack **b, t_stack **a); 
+void	push(t_stack **dest, t_stack **src);
+void	pa(t_stack **a, t_stack **b, bool status);
+void	pb(t_stack **b, t_stack **a, bool status);
 
 //comm rotate //
-void			rotate(t_stack **stack);
-void			ra(t_stack **stack);
-void			rb(t_stack **stack);
-void			rr(t_stack **a, t_stack **b);
+void	rotate(t_stack **stack);
+void	ra(t_stack **stack, bool status);
+void	rb(t_stack **stack, bool status);
+void	rr(t_stack **a, t_stack **b, bool status);
 
 //comm reverse //
-void			reverse(t_stack **stack);
-void			rra(t_stack **stack);
-void			rrb(t_stack **stack);
-void			rrr(t_stack **a, t_stack **b);
+void	reverse(t_stack **stack);
+void	rra(t_stack **stack, bool status);
+void	rrb(t_stack **stack, bool status);
+void	rrr(t_stack **a, t_stack **b, bool status);
 
 #endif // PUSH_SWAP_H

@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:09:28 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/13 15:51:48 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:54:53 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,20 @@ void	push(t_stack **dest, t_stack **src)
 ** Take the first element at the top
 ** of b and put it at the top of a
 */
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, bool status)
 {
 	push(a, b);
-	write(1, "pa\n", 3);
+	if (status == false)
+		write(1, "pa\n", 3);
 }
 
 /*
 ** Take the first element at the top
 ** of a and put it at the top of b
 */
-void	pb(t_stack **b, t_stack **a)
+void	pb(t_stack **b, t_stack **a, bool status)
 {
 	push(b, a);
-	write(1, "pb\n", 3);
+	if (status == false)
+		write(1, "pb\n", 3);
 }

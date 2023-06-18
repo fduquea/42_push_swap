@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:07:17 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 22:29:18 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/17 00:07:35 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	swap(t_stack **stack)
 {
 	int	len;
 
-	len = stackLen(*stack);
+	len = stack_len(*stack);
 	if (NULL == *stack || NULL == stack || 1 == len)
 		return ;
 	*stack = (*stack)->next;
@@ -35,29 +35,31 @@ void	swap(t_stack **stack)
 ** Swap the first 2 elements
 ** at the top of stack a
 */
-void	sa(t_stack **stack)
+void	sa(t_stack **stack, bool status)
 {
 	swap(stack);
-	write(1, "sa\n", 3);
+	if (status == false)
+		write(1, "sa\n", 3);
 }
 
 /*
 ** Swap the first 2 elements
 ** at the top of stack b
 */
-void	sb(t_stack **stack)
+void	sb(t_stack **stack, bool status)
 {
 	swap(stack);
-	write(1, "sb\n", 3);
+	if (status == false)
+		write(1, "sb\n", 3);
 }
 
 /*
 ** 'sa' and 'sb'  at the same time
 */
-void	ss(t_stack **a, t_stack **b)
+void	ss(t_stack **a, t_stack **b, bool status)
 {
 	swap(a);
 	swap(b);
-	write(1, "ss\n", 3);
+	if (status == false)
+		write(1, "ss\n", 3);
 }
-

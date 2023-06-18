@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aa-create_stack_errors.c                           :+:      :+:    :+:   */
+/*   free_error_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:28:08 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/16 21:26:22 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/18 01:55:38 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	freeFakeArgv(char **args)
+void	free_fake_argv(char **argv)
 {
 	int	i;
 
-	if (args == NULL || *args == NULL)
+	if (!argv || !(*argv))
 		return ;
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args - 1);
+	i = -1;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv - 1);
 }
 
-void	stackFree(t_stack **a)
+void	stack_free(t_stack **a)
 {
 	t_stack	*temp;
 	t_stack	*current;
@@ -45,7 +42,7 @@ void	stackFree(t_stack **a)
 	*a = NULL;
 }
 
-int	checkRepetition(t_stack *a, int n)
+int	check_repetion(t_stack *a, int n)
 {
 	if (a == NULL)
 		return (0);
@@ -58,14 +55,15 @@ int	checkRepetition(t_stack *a, int n)
 	return (0);
 }
 
-int	errorSyntax(char *str)
+int	error_syntax(char *str)
 {
 	int	i;
 
 	i = 1;
 	if (str[0] != '+' && str[0] != '-' && !(str[0] >= '0' && str[0] <= '9'))
 		return (1);
-	if ((str[0] == '-' && !(str[1] >= '0' && str[1] <= '9')) || (str[0] == '+' && !(str[1] >= '0' && str[1] <= '9')))
+	if ((str[0] == '-' && !(str[1] >= '0' && str[1] <= '9'))
+		|| (str[0] == '+' && !(str[1] >= '0' && str[1] <= '9')))
 		return (1);
 	while (str[i])
 	{
@@ -76,11 +74,12 @@ int	errorSyntax(char *str)
 	return (0);
 }
 
-void	stackError(t_stack **a, char **args, int argc)
+void	stack_error(t_stack **a, char **argv, int argc, bool status)
 {
-	if (argc == 2 && args[1])
-		freeFakeArgv(args);
-	stackFree(a);
-	write(2, "Error\n", 6);
+	if (argc == 2 && argv[1])
+		free_fake_argv(argv);
+	stack_free(a);
+	if (status == false)
+		write(2, "Error\n", 6);
 	exit(1);
 }
