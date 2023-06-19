@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:02:47 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/19 15:10:07 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:33:41 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,29 @@ static void	error(t_stack **a, t_stack **b)
 static void	get_command(t_stack **a, t_stack **b, char *command)
 {
 	if (!ft_strcmp(command, "pa\n"))
-		pa(a, b, true);
+		return (pa(a, b, true));
 	else if (!ft_strcmp(command, "pb\n"))
-		pb(b, a, true);
+		return (pb(b, a, true));
 	else if (!ft_strcmp(command, "sa\n"))
-		sa(a, true);
+		return (sa(a, true));
 	else if (!ft_strcmp(command, "sb\n"))
-		sb(b, true);
+		return (sb(b, true));
 	else if (!ft_strcmp(command, "ss\n"))
-		ss(a, b, true);
+		return (ss(a, b, true));
 	else if (!ft_strcmp(command, "ra\n"))
-		ra(a, true);
+		return (ra(a, true));
 	else if (!ft_strcmp(command, "rb\n"))
-		rb(b, true);
+		return (rb(b, true));
 	else if (!ft_strcmp(command, "rr\n"))
-		rr(a, b, true);
+		return (rr(a, b, true));
 	else if (!ft_strcmp(command, "rra\n"))
-		rra(a, true);
+		return (rra(a, true));
 	else if (!ft_strcmp(command, "rrb\n"))
-		rrb(b, true);
+		return (rrb(b, true));
 	else if (!ft_strcmp(command, "rrr\n"))
-		rrr(a, b, true);
-	else
-		error(a, b);
+		return (rrr(a, b, true));
+	free(command);
+	error(a, b);
 }
 
 void	sort_check(t_stack *a, int len)
@@ -71,7 +71,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		len;
 	char	*next_line;
 
 	a = NULL;
@@ -83,7 +82,6 @@ int	main(int argc, char **argv)
 	if (argv == NULL)
 		error(&a, &b);
 	create_stack(&a, argv + 1, argc);
-	len = stack_len(a);
 	next_line = get_next_line(0);
 	while (next_line)
 	{
@@ -91,7 +89,7 @@ int	main(int argc, char **argv)
 		free(next_line);
 		next_line = get_next_line(0);
 	}
-	sort_check(a, len);
+	sort_check(a, stack_len(a));
 	free(next_line);
 	stack_free(&a);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_push_swap_bonus.h                                :+:      :+:    :+:   */
+/*   bonus_push_swap_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:27 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/17 00:12:28 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:26:56 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef A_PUSH_SWAP_BONUS_H
-# define A_PUSH_SWAP_BONUS_H
+#ifndef BONUS_PUSH_SWAP_BONUS_H
+# define BONUS_PUSH_SWAP_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
