@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:28:08 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/18 01:55:38 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:51:56 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,11 @@ int	error_syntax(char *str)
 	return (0);
 }
 
-void	stack_error(t_stack **a, char **argv, int argc, bool status)
+void	stack_error(t_stack **a, char **argv, int argc)
 {
 	if (argc == 2 && argv[1])
 		free_fake_argv(argv);
 	stack_free(a);
-	if (status == false)
-		write(2, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
 }

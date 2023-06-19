@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:23:41 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/18 01:49:12 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:51:42 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	add_number(t_stack **stack, int num)
 	}
 }
 
-void	create_stack(t_stack **a, char **argv, int argc, bool status)
+void	create_stack(t_stack **a, char **argv, int argc)
 {
 	int		i;
 	long	n;
@@ -47,12 +47,12 @@ void	create_stack(t_stack **a, char **argv, int argc, bool status)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			stack_error(a, argv, argc, status);
+			stack_error(a, argv, argc);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			stack_error(a, argv, argc, status);
+			stack_error(a, argv, argc);
 		if (check_repetion(*a, n))
-			stack_error(a, argv, argc, status);
+			stack_error(a, argv, argc);
 		add_number(a, (int)n);
 		i++;
 	}

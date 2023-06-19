@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_get_next_line_bonus.c                            :+:      :+:    :+:   */
+/*   bonus_get_next_line_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:04:28 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/17 00:10:42 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:55:47 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "a_push_swap_bonus.h"
+#include "bonus_push_swap_bonus.h"
 
 char	*get_line_and_next_one(int fd, char *static_buffer)
 {

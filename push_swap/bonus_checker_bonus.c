@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_checker_bonus.c                                  :+:      :+:    :+:   */
+/*   bonus_checker_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:02:47 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/18 00:42:26 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:10:07 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "a_push_swap_bonus.h"
+#include "bonus_push_swap_bonus.h"
 
 static int	ft_strcmp(char *str1, char *str2)
 {
@@ -82,15 +82,16 @@ int	main(int argc, char **argv)
 		argv = ft_split(argv[1], 32);
 	if (argv == NULL)
 		error(&a, &b);
-	create_stack(&a, argv + 1, argc, true);
+	create_stack(&a, argv + 1, argc);
 	len = stack_len(a);
 	next_line = get_next_line(0);
 	while (next_line)
 	{
 		get_command(&a, &b, next_line);
+		free(next_line);
 		next_line = get_next_line(0);
 	}
 	sort_check(a, len);
+	free(next_line);
 	stack_free(&a);
-	stack_free(&b);
 }

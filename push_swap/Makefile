@@ -6,7 +6,7 @@
 #    By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 12:18:11 by fduque-a          #+#    #+#              #
-#    Updated: 2023/06/17 23:38:21 by fduque-a         ###   ########.fr        #
+#    Updated: 2023/06/19 14:58:53 by fduque-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = push_swap
 BONUS = checker
 HEADER = push_swap.h
-HEADER_BONUS = a_push_swap_bonus.h
+HEADER_BONUS = bonus_push_swap_bonus.h
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 AR = ar rcs
@@ -37,7 +37,7 @@ WHITE = \033[0;97m
 SRC_FILES = comm_push comm_reverse comm_rotate comm_swap free_error_check main push_swap set_stuff small_sort stack_creation utils_algo utils_sort
 SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addsuffix .o, $(SRC_FILES))
-SRC_BONUS_FILES = a_get_next_line_bonus a_checker_bonus a_get_next_line_utils_bonus push_swap set_stuff small_sort stack_creation utils_algo utils_sort comm_push comm_reverse comm_rotate comm_swap free_error_check a_split_bonus
+SRC_BONUS_FILES = bonus_get_next_line_bonus bonus_checker_bonus bonus_get_next_line_utils_bonus push_swap set_stuff small_sort stack_creation utils_algo utils_sort comm_push comm_reverse comm_rotate comm_swap free_error_check bonus_split_bonus
 SRC_BONUS = $(addsuffix .c, $(SRC_BONUS_FILES))
 OBJ_BONUS = $(addsuffix .o, $(SRC_BONUS_FILES))
 

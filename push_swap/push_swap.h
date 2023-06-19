@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 12:18:04 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/18 01:48:48 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:52:21 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_fake_argv(char **argv);
 void	stack_free(t_stack **a);
 int		check_repetion(t_stack *a, int n);
 int		error_syntax(char *str);
-void	stack_error(t_stack **a, char **args, int argc, bool status);
+void	stack_error(t_stack **a, char **args, int argc);
 
 //setters//
 void	set_stuff(t_stack *a, t_stack *b);//
@@ -68,7 +68,7 @@ void	sort_three(t_stack **a);
 
 // stack creation //
 void	add_number(t_stack **stack, int num); //
-void	create_stack(t_stack **a, char **argv, int argc, bool status); //
+void	create_stack(t_stack **a, char **argv, int argc); //
 int		is_sorted(t_stack *a); //
 
 // main //

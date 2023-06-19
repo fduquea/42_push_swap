@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_get_next_line_utils_bonus.c                      :+:      :+:    :+:   */
+/*   bonus_get_next_line_utils_bonus.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:04:23 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/17 00:12:10 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:56:00 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "a_push_swap_bonus.h"
+#include "bonus_push_swap_bonus.h"
 
 size_t	ft_strlen_gnl(const char *str)
 {

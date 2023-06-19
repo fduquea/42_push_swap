@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 12:18:07 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/18 01:47:33 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:53:27 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	main(int argc, char **argv)
 		argv = ft_split(argv[1], 32);
 	if (argv == NULL)
 		return (write(2, "Error\n", 6));
-	create_stack(&a, argv + 1, argc, false);
+	create_stack(&a, argv + 1, argc);
 	if (!is_sorted(a))
 	{
 		if (stack_len(a) == 2)
