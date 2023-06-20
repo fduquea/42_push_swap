@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:02:47 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/19 19:33:41 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:36:55 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,52 @@ static void	error(t_stack **a, t_stack **b)
 	exit(1);
 }
 
-static void	get_command(t_stack **a, t_stack **b, char *command)
+static int	get_command(t_stack **a, t_stack **b, char *command)
 {
 	if (!ft_strcmp(command, "pa\n"))
-		return (pa(a, b, true));
+		pa(a, b, true);
 	else if (!ft_strcmp(command, "pb\n"))
-		return (pb(b, a, true));
+		pb(b, a, true);
 	else if (!ft_strcmp(command, "sa\n"))
-		return (sa(a, true));
+		sa(a, true);
 	else if (!ft_strcmp(command, "sb\n"))
-		return (sb(b, true));
+		sb(b, true);
 	else if (!ft_strcmp(command, "ss\n"))
-		return (ss(a, b, true));
+		ss(a, b, true);
 	else if (!ft_strcmp(command, "ra\n"))
-		return (ra(a, true));
+		ra(a, true);
 	else if (!ft_strcmp(command, "rb\n"))
-		return (rb(b, true));
+		rb(b, true);
 	else if (!ft_strcmp(command, "rr\n"))
-		return (rr(a, b, true));
+		rr(a, b, true);
 	else if (!ft_strcmp(command, "rra\n"))
-		return (rra(a, true));
+		rra(a, true);
 	else if (!ft_strcmp(command, "rrb\n"))
-		return (rrb(b, true));
+		rrb(b, true);
 	else if (!ft_strcmp(command, "rrr\n"))
-		return (rrr(a, b, true));
-	free(command);
-	error(a, b);
+		rrr(a, b, true);
+	else
+		return (0);
+	return (1);
 }
 
-void	sort_check(t_stack *a, int len)
+void	get_lines(t_stack **a, t_stack **b)
 {
-	if (is_sorted(a) && stack_len(a) == len)
-		write(1, "Ok\n", 3);
-	else
-		write(1, "KO\n", 3);
+	char	*next_line;
+	int		i;
+
+	next_line = get_next_line(0);
+	while (next_line)
+	{
+		i = get_command(a, b, next_line);
+		if (i == 0)
+		{
+			free(next_line);
+			error(a, b);
+		}
+		free(next_line);
+		next_line = get_next_line(0);
+	}
 	return ;
 }
 
@@ -71,7 +83,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	char	*next_line;
+	int		len;
 
 	a = NULL;
 	b = NULL;
@@ -82,14 +94,11 @@ int	main(int argc, char **argv)
 	if (argv == NULL)
 		error(&a, &b);
 	create_stack(&a, argv + 1, argc);
-	next_line = get_next_line(0);
-	while (next_line)
-	{
-		get_command(&a, &b, next_line);
-		free(next_line);
-		next_line = get_next_line(0);
-	}
-	sort_check(a, stack_len(a));
-	free(next_line);
+	len = stack_len(a);
+	get_lines(&a, &b);
+	if (is_sorted(a) && stack_len(a) == len)
+		write(1, "Ok\n", 3);
+	else
+		write(1, "KO\n", 3);
 	stack_free(&a);
 }
