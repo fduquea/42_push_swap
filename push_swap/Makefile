@@ -6,7 +6,7 @@
 #    By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 12:18:11 by fduque-a          #+#    #+#              #
-#    Updated: 2023/06/20 11:24:24 by fduque-a         ###   ########.fr        #
+#    Updated: 2023/06/20 12:28:33 by fduque-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS = checker
 HEADER = push_swap.h
 HEADER_BONUS = bonus_push_swap_bonus.h
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=leak
 AR = ar rcs
 RM = rm -f
 HDR = -I .

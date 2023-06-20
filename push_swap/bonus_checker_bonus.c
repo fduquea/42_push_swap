@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:02:47 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/20 11:36:55 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:20:19 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	get_lines(t_stack **a, t_stack **b)
 		free(next_line);
 		next_line = get_next_line(0);
 	}
+	free(next_line);
 	return ;
 }
 
@@ -101,4 +102,5 @@ int	main(int argc, char **argv)
 	else
 		write(1, "KO\n", 3);
 	stack_free(&a);
+	stack_free(&b);
 }
