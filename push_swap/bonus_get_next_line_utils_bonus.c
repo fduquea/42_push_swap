@@ -6,7 +6,7 @@
 /*   By: fduque-a <fduque-a@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:04:23 by fduque-a          #+#    #+#             */
-/*   Updated: 2023/06/19 14:56:00 by fduque-a         ###   ########.fr       */
+/*   Updated: 2023/06/21 09:30:55 by fduque-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*ft_secondline(char *string)
 	i = 0;
 	while (string[i] && string[i] != '\n')
 		i++;
-	if (!string[i])
+	if (!string[i] || !string[i + 1])
 	{
 		free(string);
 		return (NULL);
