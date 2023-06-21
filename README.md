@@ -1,4 +1,4 @@
-# 📚 42 push_swap
+# 📚 42 push_swap [![fduque-a's 42 push_swap Score](https://badge42.vercel.app/api/v2/cli4i2e8c001108jt19bvwefz/project/3125610)](https://github.com/JaeSeoKim/badge42)
 
 ## Introduction
 
