@@ -69,7 +69,7 @@ The sorting algorithm used in my code follows a combination of techniques to sor
      - If the size of Stack A is 3, the `sort_three` function is called to sort the three elements using specific operations.
      - For stack sizes greater than 3, the `push_swap` function is called to sort the stack using a combination of operations.
 
-3. **Sort Tree**:
+3. **Sort Three**:
    - The `sort_three` function finds the highest value in Stack A and determines its position relative to the top and the second position of the stack.
    - Based on the position, the function performs the necessary rotations (`ra` or `rra`) to bring the highest value to the bottom.
    - If the top two elements of Stack A are out of order, the function performs the `sa` operation to swap them.
